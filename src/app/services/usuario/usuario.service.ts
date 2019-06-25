@@ -7,6 +7,7 @@ import 'rxjs/add/operator/map';
 
 import { Router } from '@angular/router';
 import swal from 'sweetalert';
+import { SubirArchivoService } from '../subir-archivo/subir-archivo.service';
 
 
 
@@ -18,7 +19,8 @@ export class UsuarioService {
 
   constructor( 
     public http: HttpClient,
-    public router: Router 
+    public router: Router,
+    public _subirArhivoService: SubirArchivoService 
   ) {
     this.cargarStorage();
   }
@@ -113,6 +115,35 @@ export class UsuarioService {
                 swal('Usuario creado', usuario.email, 'success' );
                 return resp.usuario;
               });
+  }
+
+  actualizarUsuario ( usuario: Usuario ) {
+    let url = URL_SERVICIOS + "/usuario/" +usuario._id + '?token='+this.token;
+    
+    //console.log(url);
+
+    return this.http.put( url, usuario )
+        .map( (resp : any) => {
+          
+          this.guardarStorage(resp.usuario._id, this.token, usuario ); 
+          swal('Usuario actuaizado', usuario.nombres + ' ' + usuario.apellidos, 'success');
+          
+          return true;
+        });
+  }
+
+  cambiarImagen( file: File, id: string ) {
+
+    this._subirArhivoService.subirArchivo( file, 'usuarios', id )
+        .then( (resp:any) => {
+          //console.log( resp );
+          this.usuario.img=resp.usuario.img;
+          swal( 'Imagen Actualizada ', this.usuario.nombres, 'success');
+          this.guardarStorage(id, this.token, this.usuario);
+        })
+        .catch( resp => {
+          console.log( resp );
+        });
   }
   
   

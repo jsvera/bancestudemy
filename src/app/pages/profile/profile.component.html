@@ -1,0 +1,83 @@
+<div class="row animated fadeIn">
+    <div class="col-lg-7">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Sample Form with the Icons</h4>
+                <h6 class="card-subtitle">made with bootstrap elements</h6>
+                <form ngNativeValidate #f='ngForm' (ngSubmit)="guardar ( f.value )" class="form p-t-20">
+                    <div class="form-group">
+                        <label for="exampleInputuname">Nombres</label>
+                        <div class="input-group">
+                            <div class="input-group-addon"><i class="ti-user"></i></div>
+                            <input [ngModel]="usuario.nombres" name="nombres" type="text" class="form-control" placeholder="Nombres del usuario" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputuname">Apellidos</label>
+                        <div class="input-group">
+                            <div class="input-group-addon"><i class="ti-user"></i></div>
+                            <input [ngModel]="usuario.apellidos" name="apellidos" type="text" class="form-control" placeholder="Apellidos del usuario" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputuname">Cédula</label>
+                        <div class="input-group">
+                            <div class="input-group-addon"><i class="ti-user"></i></div>
+                            <input [ngModel]="usuario.dni" name="cedula" type="text" class="form-control" placeholder="Num. de Cédula">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Email</label>
+                        <div class="input-group">
+                            <div class="input-group-addon"><i class="ti-email"></i></div>
+                            <input [ngModel]="usuario.email" [disabled]="usuario.google" name="email" type="email" class="form-control" placeholder="Correo del usuario" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="pwd1">Usuario</label>
+                        <div class="input-group">
+                            <div class="input-group-addon"><i class="ti-lock"></i></div>
+                            <input [ngModel]="usuario.usuario" type="text" name="usuario" class="form-control" placeholder="Nombre de usuario" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="pwd2">Confirm Password</label>
+                        <div class="input-group">
+                            <div class="input-group-addon"><i class="ti-lock"></i></div>
+                            <input type="password" class="form-control" id="pwd2" placeholder="Enter email">
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-success waves-effect waves-light m-r-10">
+                      <i class="fa fa-save"></i>
+                      Guardar
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="col-lg-5">
+        <div class="card">
+            <div class="card-body" align="center">
+                <h4 class="card-title">Fotografía del usuario</h4>
+                <h6 class="card-subtitle">Actualiza tu foto de perfil</h6>
+
+                <img *ngIf="!imagenTemp" [src]="usuario.img | imagen" class="w150">
+                <img *ngIf="imagenTemp" [src]="imagenTemp" class="w150">
+
+                <input (change)="seleccionImage( $event.target.files[0] )" type="file">
+
+                <br><br>
+
+                <button (click)="cambiarImagen()" [disabled]="!imagenSubir" type="button" class="btn btn-block btn-success waves-effect waves-light m-r-10">
+                    <i class="fa fa-save"></i>
+                    Actualizar Foto
+                  </button>
+
+            </div>
+        </div>
+    </div>
+
+
+</div>
