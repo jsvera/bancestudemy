@@ -11,6 +11,7 @@ import swal from 'sweetalert';
 export class HospitalService {
 
   hospital: Hospital;
+  totalHospitales: number = 0;
 
   constructor(
     public http: HttpClient,
@@ -25,6 +26,7 @@ export class HospitalService {
     
     return this.http.get( url )
         .map( (resp: any) => {
+          this.totalHospitales=resp.total;
           return resp.hospitales;
         });
   }
@@ -32,7 +34,7 @@ export class HospitalService {
 
   obtenerHospital(	id:	string	) {
     let url =URL_SERVICIOS + '/hospital/' + id;
-    return this.http.get( url ) 
+    return this.http.get( url )
         .map( (resp: any) => resp.hospital );
   }
 

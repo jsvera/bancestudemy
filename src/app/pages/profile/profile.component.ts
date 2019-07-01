@@ -26,10 +26,11 @@ export class ProfileComponent implements OnInit {
 
   guardar( usuario: Usuario ){
     
+    //this.usuario.dni = usuario.dni;
     this.usuario.nombres = usuario.nombres;
-    if ( !this.usuario.google ) {
+    //if ( !this.usuario.google ) {
       this.usuario.apellidos = usuario.apellidos;
-    }
+    //}
 
     this._usuarioService.actualizarUsuario(this.usuario)
       .subscribe( resp => {

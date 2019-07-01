@@ -23,7 +23,7 @@
                         <label for="exampleInputuname">Cédula</label>
                         <div class="input-group">
                             <div class="input-group-addon"><i class="ti-user"></i></div>
-                            <input [ngModel]="usuario.dni" name="cedula" type="text" class="form-control" placeholder="Num. de Cédula">
+                            <input [ngModel]="usuario.dni" name="cedula" [disabled]="true" type="text" class="form-control" placeholder="Num. de Cédula">
                         </div>
                     </div>
                     <div class="form-group">
@@ -41,7 +41,7 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="pwd2">Confirm Password</label>
+                        <label for="pwd2">Password</label>
                         <div class="input-group">
                             <div class="input-group-addon"><i class="ti-lock"></i></div>
                             <input type="password" class="form-control" id="pwd2" placeholder="Enter email">

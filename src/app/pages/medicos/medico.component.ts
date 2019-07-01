@@ -74,9 +74,12 @@ export class MedicoComponent implements OnInit {
 
 
   cambioHospital( id: string ) {
-    //console.log(id);
+    //sconsole.log(id);
     this._hospitalService.obtenerHospital( id )
-        .subscribe( hospital => this.hospital = hospital);
+        .subscribe( hospital => {
+          this.hospital = hospital;
+          console.log(hospital);
+        });
   }
 
 

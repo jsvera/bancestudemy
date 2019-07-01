@@ -1,0 +1,67 @@
+<div class="row">
+
+    <div class="col-4">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-tittle">Usuarios</h4>
+                <table class="table table-hover">
+                    <tbody>
+                        <tr *ngFor="let usuario of usuarios" [routerLink]="['/usuarios']" class="pointer">
+                            <td>
+                                <img [src]="usuario.img | imagen" class="img-50 img-circle pointer">
+
+                            </td>
+                            <td>{{usuario.nombres}} {{usuario.apellidos}}</td>
+
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="alert alert-info" *ngIf="usuarios.length === 0">
+                    Sin resultados
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-4">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-tittle">Médicos</h4>
+                <table class="table table-hover">
+                    <tbody>
+                        <tr *ngFor="let medico of medicos" [routerLink]="['/medico', medico._id]" class="pointer">
+                            <td>
+                                <img (click)="mostrarModal( medico._id )" [src]="medico.img | imagen:'medico'" class="img-50 img-circle pointer">
+                            </td>
+                            <td>{{medico.nombre}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="alert alert-info" *ngIf="medicos.length === 0">
+                    Sin resultados
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-4">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-tittle">Hospitales</h4>
+                <table class="table table-hover">
+                    <tbody>
+                        <tr *ngFor="let hospital of hospitales" [routerLink]="['/hospitales']" class="pointer">
+                            <td><img (click)="mostrarModal( hospital._id )" [src]="hospital.img | imagen:'hospital'" class="img-50 img-circle pointer"></td>
+                            <td>{{hospital.nombre}}</td>
+
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="alert alert-info" *ngIf="hospitales.length === 0">
+                    Sin resultados
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
