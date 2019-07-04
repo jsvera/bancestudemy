@@ -36,3 +36,22 @@
     height: 100%;
     z-index: 9999;
 }
+
+.svg-logo {
+    vertical-align: -webkit-baseline-middle;
+    border-style: none;
+    display: inline-block;
+}
+
+.svg-dark-logo {
+    width: 50px;
+}
+
+.svg-light-logo-text {}
+
+.svg-dark-logo-text {
+    width: 120px;
+    margin-left: 10px;
+}
+
+.svg-light-logo {}

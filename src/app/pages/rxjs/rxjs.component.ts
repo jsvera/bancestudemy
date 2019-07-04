@@ -1,6 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Observable, Subscriber, Subscription } from 'rxjs';
-import { retry, map, filter } from 'rxjs/operators';
+import { Observable, Subscription } from 'rxjs/Rx';
+import 'rxjs/add/operator/retry';
+import 'rxjs/add/operator/filter';
 
 
 @Component({
@@ -32,19 +33,19 @@ export class RxjsComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(){//funcion que se ejeecuta cada vez que se va de la pagina
-    console.log('la pagina se va a cerar');
+    //console.log('la pagina se va a cerar');
     this.subscription.unsubscribe();
   }
 
   regresaObservable(): Observable<any> {
 
-    return new Observable( (observer: Subscriber<any>) => {
+    return new Observable( observer => {
 
       let contador = 0;
-      const intervalo = setInterval( () => {
+      let intervalo = setInterval( () => {
         contador ++;
 
-        const salida = {
+        let salida = {
           valor: contador
         };
 
@@ -61,24 +62,27 @@ export class RxjsComponent implements OnInit, OnDestroy {
         //  observer.error( 'Auxilio! ');
         //}
 
-      }, 1000 );
+      }, 500 );
 
-    }).pipe(
-      map( resp => resp.valor),
-      filter( (valor, index) => {
-        //console.log('Filter', valor, index);
-        if ( (valor % 2) === 1 ) {
-          //impar
-          return true;
-        } else {
-          //par
-          return false;
-        }
-        //return true;//debe retornar True o False
-      })
-    );
+    })
+    .retry(2)
+  .map( (resp: any) => {
 
-    //return obs;
+    return resp.valor;
+  })
+  .filter( (valor, index) => {
+
+    if ( (valor % 2) === 1 ) {
+      // impar
+      return true;
+    }else {
+      // par
+      return false;
+    }
+
+  });
+
+
   }
 
 }

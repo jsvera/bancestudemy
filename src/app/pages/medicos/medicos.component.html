@@ -46,7 +46,7 @@
                     <tbody>
                         <tr *ngFor="let medico of medicos">
                             <td class="w70">
-                                <img (click)="actualizarImagen( hospital._id )" [src]="medico.img | imagen:'medico'" class="img-50 pointer">
+                                <img [src]="medico.img | imagen:'medico'" class="img-50">
                             </td>
                             <td>
                                 {{ medico.nombre }}

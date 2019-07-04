@@ -17,7 +17,7 @@ export class ModalUploadComponent implements OnInit {
     public _subirArchivoService: SubirArchivoService,
     public _modalUploadService: ModalUploadService
   ) {
-    console.log('modal listo');
+    //console.log('modal listo');
    }
 
   ngOnInit() {
@@ -48,7 +48,7 @@ export class ModalUploadComponent implements OnInit {
     let reader = new FileReader();
     let urlImagenTemp = reader.readAsDataURL( archivo );
 
-    reader.onloadend = () => this.imagenTemp = reader.result;
+    reader.onloadend = () => this.imagenTemp = reader.result as string;
 
   }
 

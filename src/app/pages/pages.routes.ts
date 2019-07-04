@@ -10,7 +10,7 @@ import { RxjsComponent } from './rxjs/rxjs.component';
 
 //GUARDS
 import { LoginGuardGuard } from '../services/guards/login-guard.guard';
-import { AdminGuard } from '../services/services.index';
+import { AdminGuard, VerificatokenGuard } from '../services/services.index';
 
 import { ProfileComponent } from './profile/profile.component';
 import { UsuariosComponent } from './usuarios/usuarios.component';
@@ -18,15 +18,20 @@ import { HospitalesComponent } from './hospitales/hospitales.component';
 import { MedicoComponent } from './medicos/medico.component';
 import { MedicosComponent } from './medicos/medicos.component';
 import { BusquedaComponent } from './busqueda/busqueda.component';
+import { FaviconComponent } from '../components/favicon/favicon.component';
 
 
 const pagesRoutes: Routes = [
-    {
-        path: '',
-        component: PagesComponent,
-        canActivate: [ LoginGuardGuard ],
-        children: [
-            { path: 'dashboard', component: DashboardComponent, data: {titulo: 'Dashboard', descripcion: 'se encuentra en el Dashboard...' }},
+    
+            { 
+                path: 'dashboard', 
+                component: DashboardComponent,
+                canActivate: [VerificatokenGuard],
+                data: {
+                    titulo: 'Dashboard', 
+                    descripcion: 'se encuentra en el Dashboard...' 
+                }
+            },
             { path: 'progress', component: ProgressComponent, data: {titulo: 'Progress', descripcion: 'se encuentra en el Progress...'}},
             { path: 'graficas1', component: Graficas1Component, data: {titulo: 'Gráficas', descripcion: 'se encuentra en Gráficas...'}},
             { path: 'promesas', component: PromesasComponent, data: {titulo: 'Promesas',descripcion: 'se encuentra en Promesas...'}},
@@ -34,6 +39,7 @@ const pagesRoutes: Routes = [
             { path: 'account-settings', component: AccountSettingsComponent, data: {titulo: 'Ajustes del Tema',descripcion: 'se encuentra en Ajustes del Tema...' }},
             { path: 'perfil', component: ProfileComponent, data: {titulo: 'Perfil de Usuario', descripcion: 'Muestra perfil del usuario'} },
             { path: 'busqueda/:termino', component: BusquedaComponent, data: {titulo: 'Buscador', descripcion: 'Muestra un buscador'} },
+            { path: 'favicon', component: FaviconComponent, data: {titulo: 'favicon', descripcion: 'Muestra un buscador'} },
 
             //MANTENIMIENTOS
             { 
@@ -47,8 +53,7 @@ const pagesRoutes: Routes = [
             { path: 'medicos', component: MedicosComponent, data: {titulo: 'Mantenimiento de Medicos', descripcion: 'Muestra el mantenimiento de medicos'} },
             { path: 'medico/:id', component: MedicoComponent, data: {titulo: 'Actualizar Medico', descripcion: 'Muestra el formulario de medico'} },
             { path: '', redirectTo: '/dashboard', pathMatch: 'full'}
-        ]
-    }
+        
 ];
 
 export const PAGES_ROUTES = RouterModule.forChild( pagesRoutes);

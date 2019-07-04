@@ -27,9 +27,10 @@ import { MedicoComponent } from './medicos/medico.component';
 import { BusquedaComponent } from './busqueda/busqueda.component';
 
 
+
 @NgModule({
     declarations: [
-        PagesComponent,
+        //PagesComponent,
         DashboardComponent,
         ProgressComponent,
         Graficas1Component,
@@ -40,7 +41,7 @@ import { BusquedaComponent } from './busqueda/busqueda.component';
         RxjsComponent,
         ProfileComponent,
         UsuariosComponent,
-        ModalUploadComponent,
+        //ModalUploadComponent,
         HospitalesComponent,
         MedicosComponent,
         MedicoComponent,
